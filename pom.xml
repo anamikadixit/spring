@@ -46,6 +46,28 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+            <!-- plugin interfaces and base classes -->
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-plugin-api</artifactId>
+            <version>3.6.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <!-- needed when injecting the Maven Project into a plugin  -->
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-core</artifactId>
+            <version>3.6.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <!-- annotations used to describe the plugin meta-data -->
+            <groupId>org.apache.maven.plugin-tools</groupId>
+            <artifactId>maven-plugin-annotations</artifactId>
+            <version>3.5</version>
+            <scope>provided</scope>
+        </dependency>
+		
 	</dependencies>
 
 	<build>
@@ -56,21 +78,15 @@
 			</plugin>	
 			
 			<plugin>
-              <groupId>com.heroku.sdk</groupId>
-              <artifactId>heroku-maven-plugin</artifactId>
-              <version>2.0.3</version>
-              <configuration>
-                  <appName>callicoder-heroku-maven-demo</appName>
-                  <includeTarget>false</includeTarget>
-                  <includes>
-                      <include>${project.build.directory}/${project.build.finalName}.jar</include>
-                  </includes>
-                  <jdkVersion>${java.version}</jdkVersion>
-                  <processTypes>
-                      <web>java $JAVA_OPTS -jar ${project.build.directory}/${project.build.finalName}.jar</web>
-                  </processTypes>
-              </configuration>
-          </plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-plugin-plugin</artifactId>
+                    <version>3.6.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>3.8.2</version>
+                </plugin>
 			
 		</plugins>
 	</build>
